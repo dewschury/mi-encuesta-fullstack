@@ -2,33 +2,34 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Encuesta de Satisfacción</title>
+  <title>Encuesta Vendedores Ambulantes</title>
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
     .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    h1 { color: #1a73e8; border-bottom: 2px solid #e8eaed; padding-bottom: 15px; font-size: 24px; }
-    label { display: block; margin-top: 20px; font-weight: 600; color: #333; }
-    input { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #dadce0; border-radius: 6px; font-size: 14px; box-sizing: border-box; }
+    h1 { color: #1a73e8; border-bottom: 2px solid #e8eaed; padding-bottom: 15px; font-size: 22px; }
+    label { display: block; margin-top: 15px; font-weight: 600; color: #333; font-size: 14px;}
+    input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #dadce0; border-radius: 6px; box-sizing: border-box; }
     input:focus { outline: none; border-color: #1a73e8; }
     button { background: #1a73e8; color: white; border: none; padding: 14px; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 25px; width: 100%; font-weight: bold; }
     button:hover { background: #1557b0; }
     #gracias { display: none; text-align: center; padding: 40px 20px; }
-    #gracias h2 { color: #1a73e8; }
   </style>
 </head>
 <body>
   <div class="container">
     <div id="formulario">
-      <h1>📋 Encuesta de Satisfacción</h1>
+      <h1>Encuesta de Condiciones Laborales</h1>
       <form id="f">
-        <label>¿Cómo calificas el servicio?</label>
-        <input name="r1" placeholder="Ej: Excelente" required>
-        
-        <label>¿Recomendarías nuestro producto?</label>
-        <input name="r2" placeholder="Ej: Sí" required>
-        
-        <label>¿Qué mejorarías?</label>
-        <input name="r3" placeholder="Ej: El precio" required>
+        <label>1. Edad</label><input name="r1" placeholder="Ej: 25" required>
+        <label>2. Sexo</label><input name="r2" placeholder="Ej: Masculino" required>
+        <label>3. Lugar de residencia</label><input name="r3" placeholder="Ej: Barrio Centro" required>
+        <label>4. Tiempo llevando trabajando como vendedor ambulante</label><input name="r4" placeholder="Ej: 2 años" required>
+        <label>5. Horas de trabajo al día</label><input name="r5" placeholder="Ej: 8 horas" required>
+        <label>6. Ingresos aproximados</label><input name="r6" placeholder="Ej: 1 salario mínimo" required>
+        <label>7. Tiempo que permanece de pie</label><input name="r7" placeholder="Ej: 6 horas" required>
+        <label>8. Acceso a baños</label><input name="r8" placeholder="Ej: Sí / No" required>
+        <label>9. Uso de elementos de protección</label><input name="r9" placeholder="Ej: Sí / No" required>
+        <label>10. Exposición al sol</label><input name="r10" placeholder="Ej: Alta / Media / Baja" required>
         
         <button>Enviar Respuesta</button>
       </form>
@@ -36,20 +37,22 @@
 
     <div id="gracias">
       <h2>¡Gracias por tu respuesta! ✅</h2>
-      <p>Tu opinión es muy importante para nosotros.</p>
-      <button onclick="location.reload()" style="width: auto; padding: 10px 20px; margin-top: 20px;">Responder de nuevo</button>
+      <p>Tu opinión es muy importante para este estudio.</p>
     </div>
   </div>
 
 <script>
 f.onsubmit = async e => {
   e.preventDefault();
+  // ⚠️ RECUERDA: Cuando subas esto a Render, cambia la URL de abajo
   await fetch('http://localhost:3000/api', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ r1: f.r1.value, r2: f.r2.value, r3: f.r3.value })
+    body: JSON.stringify({ 
+      r1: f.r1.value, r2: f.r2.value, r3: f.r3.value, r4: f.r4.value, r5: f.r5.value,
+      r6: f.r6.value, r7: f.r7.value, r8: f.r8.value, r9: f.r9.value, r10: f.r10.value
+    })
   });
-  // Ocultar formulario y mostrar mensaje de gracias
   document.getElementById('formulario').style.display = 'none';
   document.getElementById('gracias').style.display = 'block';
 };
