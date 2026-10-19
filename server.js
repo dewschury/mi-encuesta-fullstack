@@ -47,5 +47,3 @@ app.get('/api', async (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Servidor listo en puerto ${port}`));
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Servidor listo en puerto ${port}`));
