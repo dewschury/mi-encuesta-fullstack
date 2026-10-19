@@ -45,7 +45,7 @@
 f.onsubmit = async e => {
   e.preventDefault();
   // ⚠️ RECUERDA: Cuando subas esto a Render, cambia la URL de abajo
-  await fetch('http://localhost:3000/api', {
+  await fetch('https://mi-encuesta-fullstack.onrender.com/api', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ 
